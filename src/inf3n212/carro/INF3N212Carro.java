@@ -26,10 +26,66 @@ public class INF3N212Carro {
         // TODO code application logic here
         cadPessoa.mockPessoas();
         cadCarro.mockCarros();
+        int opM = 99;
+        int opSM = 99;
+        do {
+            System.out.println("-- Sistema de Cadastro --");
+            menuP();
+            opM = leiaNumInt();
+            switch (opM) {
+                case 1:
+                case 2:
+                    do {
+                        subMenu(opM);
+                        opSM = leiaNumInt();
+                        switch (opSM) {
+                            case 1:
+                                System.out.println("-- Cadastrar --");
+                                if (opM==1) {
+                                    cadastrarPessoa();
+                                }else{
+                                    cadastrarCarro();
+                                }
+                                break;
+                            case 2:
+                                System.out.println("-- Editar --");
+                                if (opM==1) {
+                                    editarPessoa();
+                                }else{
+                                    editarCarro();
+                                }
+                                break;
+                            case 3:
+                                System.out.println("-- Listar --");
+                                if (opM==1) {
+                                    listarPessoa();
+                                }else{
+                                    listarCarro();
+                                }
+                                break;
+                            case 4:
+                                System.out.println("-- Deletar --");
+                                if (opM==1) {
+                                    deletarPessoa();
+                                }else{
+                                    deletarCarro();
+                                }
+                                break;
+                            case 0:
 
-        System.out.println(cadPessoa.getPessoas());
-        System.out.println("---");
-        System.out.println(cadCarro.getCarros());
+                                break;
+                            default:
+                                System.out.println("Opção inválida, tente novamente!");
+                        }
+                    } while (opSM != 0);
+                    break;
+                case 0:
+                    System.out.println("Aplicação encerrada pelo usuário!");
+                    break;
+                default:
+                    System.out.println("Opção inválida, tente novamente!");
+            }
+        } while (opM != 0);
 
     }//fim método main
 
@@ -68,5 +124,37 @@ public class INF3N212Carro {
         System.out.println("0 - Voltar");
         System.out.print("Digite aqui: ");
     }// fim subMenu
+
+    private static void cadastrarPessoa() {
+        System.out.println("Pessoa");
+    }
+
+    private static void cadastrarCarro() {
+        System.out.println("Carro");
+    }
+
+    private static void editarPessoa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void editarCarro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void listarPessoa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void listarCarro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void deletarPessoa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void deletarCarro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }//fim classe
