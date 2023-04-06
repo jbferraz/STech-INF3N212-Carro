@@ -191,11 +191,50 @@ public class INF3N212Carro {
         do {
             System.out.print("Informe a Placa: ");
             placa = leia.nextLine();
+            placa = placa.toUpperCase();
             pCarro = Validadores.validarPlaca(placa);
             if (pCarro) {
                 Carro carro = cadCarro.getCarroPlaca(placa);
                 if (carro == null) {
-                    //segue fluxo de cadastro
+                    System.out.print("Informe a marca: ");
+                    marca = leia.nextLine();
+                    System.out.print("Informe o modelo: ");
+                    modelo = leia.nextLine();
+                    do {
+                        System.out.print("Informe o ano fab.: ");
+                        anoFab = leiaNumInt();
+                        System.out.print("Informe o ano modelo: ");
+                        anoMod = leiaNumInt();
+                        if (!Validadores.validarAnoCarro(anoFab, anoMod)) {
+                            System.out.println("Ano inválido, tente novamente!");
+                        }
+                    } while (!Validadores.validarAnoCarro(anoFab, anoMod));
+                    System.out.print("Informe a cor: ");
+                    cor = leia.nextLine();
+                    System.out.print("Informe tipo de câmbio: ");
+                    tpCambio = leia.nextLine();
+                    System.out.print("Informe o combustível: ");
+                    combustivel = leia.nextLine();
+                    do {
+                        System.out.print("Informe o CPF do proprietário: ");
+                        String cpf = leia.nextLine();
+                        proprietario = cadPessoa.getPessoaCPF(cpf);
+                        if (proprietario == null) {
+                            System.out.println("CPF não cadastrado,"
+                                    + " tente novamente!");
+                        } else {
+                            System.out.println("Pessoa selecionada: "
+                                    + proprietario.getNome());
+                            System.out.println("Este é o proprietárioa?");
+                            System.out.println("1 - Sim | 2- Não");
+                            System.out.print("Digite aqui: ");
+                            int op = leiaNumInt();
+                            if (op == 2) {
+                                System.out.println("Tente outro CPF.");
+                                proprietario = null;
+                            }
+                        }
+                    } while (proprietario == null);
                 } else {
                     System.out.println("Placa já cadastrada.");
                     pCarro = false;
