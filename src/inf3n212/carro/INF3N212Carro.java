@@ -17,7 +17,7 @@ import util.Validadores;
  * @author jbferraz
  */
 public class INF3N212Carro {
-
+    
     public static CPessoa cadPessoa = new CPessoa();
     public static CCarro cadCarro = new CCarro();
     static Scanner leia = new Scanner(System.in);
@@ -73,7 +73,7 @@ public class INF3N212Carro {
                                 }
                                 break;
                             case 0:
-
+                                
                                 break;
                             default:
                                 System.out.println("Opção inválida, tente novamente!");
@@ -87,7 +87,7 @@ public class INF3N212Carro {
                     System.out.println("Opção inválida, tente novamente!");
             }
         } while (opM != 0);
-
+        
     }//fim método main
 
     public static int leiaNumInt() {
@@ -100,7 +100,7 @@ public class INF3N212Carro {
         }
         return 99;
     }
-
+    
     public static void menuP() {
         System.out.println("-- Menu Principal --");
         System.out.println("1 - Ger. Pessoa");
@@ -134,7 +134,7 @@ public class INF3N212Carro {
         String endereco;
         String telefone;
         boolean tcpf = true;
-
+        
         do {
             System.out.print("Informe o CPF: ");
             cpf = leia.nextLine();
@@ -175,7 +175,7 @@ public class INF3N212Carro {
         cadPessoa.addPessoa(p);
         System.out.println(p.getNome() + " cadastrado com sucesso!");
     }
-
+    
     private static void cadastrarCarro() {
         System.out.println("-- Cadastrar Carro --");
         String placa;
@@ -225,7 +225,7 @@ public class INF3N212Carro {
                         } else {
                             System.out.println("Pessoa selecionada: "
                                     + proprietario.getNome());
-                            System.out.println("Este é o proprietárioa?");
+                            System.out.println("Este é o proprietário?");
                             System.out.println("1 - Sim | 2- Não");
                             System.out.print("Digite aqui: ");
                             int op = leiaNumInt();
@@ -235,6 +235,10 @@ public class INF3N212Carro {
                             }
                         }
                     } while (proprietario == null);
+                    pCarro = false;
+                    Carro c = new Carro(placa, marca, modelo, anoFab, anoMod, cor, tpCambio, combustivel, proprietario);
+                    cadCarro.addCarro(c);
+                    System.out.println("Carro cadastrado com sucesso!");
                 } else {
                     System.out.println("Placa já cadastrada.");
                     pCarro = false;
@@ -245,7 +249,7 @@ public class INF3N212Carro {
             }
         } while (pCarro);
     }
-
+    
     private static void editarPessoa() {
         System.out.println("-- Editar Pessoa --");
         boolean isCPF;
@@ -301,25 +305,25 @@ public class INF3N212Carro {
             }
         } while (isCPF);
     }
-
+    
     private static void editarCarro() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     private static void listarPessoa() {
         System.out.println("-- Lista de Pessoas --");
         for (Pessoa pessoa : cadPessoa.getPessoas()) {
             System.out.println(pessoa.toString());
         }
     }
-
+    
     private static void listarCarro() {
         System.out.println("-- Lista de Carros --");
         for (Carro carro : cadCarro.getCarros()) {
             System.out.println(carro.toString());
         }
     }
-
+    
     private static void deletarPessoa() {
         System.out.println("-- Deletar Pessoa --");
         boolean delCPF = false;
@@ -361,7 +365,28 @@ public class INF3N212Carro {
     }//fim do deletarPessoa
 
     private static void deletarCarro() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        System.out.println("-- Deletar Carro --");
+        Carro c;
+        do {
+            System.out.print("Informe uma placa: ");
+            String placa = leia.nextLine().toUpperCase();
+            c = cadCarro.getCarroPlaca(placa);
+            if (c != null) {
+                System.out.println("Deseja realmente deletar o Carro "
+                        + c.getPlaca() + " | " + c.getModelo());
+                System.out.println("1 - Sim | 2 - Cancelar");
+                System.out.print("Digite aqui: ");
+                int op = leiaNumInt();
+                if (op == 1) {
+                    cadCarro.removeCarro(c);
+                    System.out.println("Carro deletado com sucesso.");
+                }else{
+                    System.out.println("Operação cancelada pelo usuário.");
+                }
+            } else {
+                System.out.println("Placa inválida!");
+            }
+        } while (c == null);
     }
-
+    
 }//fim classe
